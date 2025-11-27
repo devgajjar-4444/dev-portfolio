@@ -218,7 +218,7 @@ export default function Portfolio() {
           }
           return newIndex
         })
-      }, 500000) // Auto-scroll every 5 seconds
+      }, 5000) // Auto-scroll every 5 seconds
     }
 
     startAutoScroll()
