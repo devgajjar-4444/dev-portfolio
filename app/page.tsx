@@ -175,7 +175,7 @@ const experience = [
   },
   {
     company: "InheritX",
-    role: "Software Engineer (Backend)",
+    role: "Software Engineer",
     period: "Mar 2023 – Aug 2025",
     description:
       "Led backend components of multiple projects, handled architecture decisions, and collaborated with cross-functional teams.",
