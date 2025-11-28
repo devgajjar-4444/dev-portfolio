@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Github, Linkedin, Mail, ExternalLink } from "lucide-react"
+import { Github, Linkedin, Mail, ExternalLink, Phone } from "lucide-react"
 
 const skills = [
   {
@@ -392,6 +392,14 @@ export default function Portfolio() {
           </a>
           <div className="flex gap-8">
             <a
+              href="#"
+              className={`text-sm font-medium transition-colors ${
+                activeSection === "" ? "text-accent font-semibold" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Home
+            </a>
+            <a
               href="#work"
               className={`text-sm font-medium transition-colors ${
                 activeSection === "work" ? "text-accent font-semibold" : "text-muted-foreground hover:text-foreground"
@@ -423,7 +431,7 @@ export default function Portfolio() {
 
       <main className="min-h-screen bg-background border-x-2 border-border">
         <div className="max-w-6xl mx-auto px-6 py-20">
-          <section className="mb-28">
+          <section id="home" className="mb-28">
             <h1 className="text-6xl md:text-7xl font-bold mb-6 text-balance leading-tight">Full Stack Engineer</h1>
             <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed mb-8">
               I build fast, scalable applications with Node.js, React, and Go. Over 3 years helping fintech, AI, and
@@ -665,23 +673,21 @@ export default function Portfolio() {
                 <Mail size={28} className="text-accent group-hover:scale-110 transition-transform" />
                 <div>
                   <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="font-semibold group-hover:text-accent transition-colors">Send me a message</p>
+                  <p className="font-semibold group-hover:text-accent transition-colors">devgajjar0132@gmail.com</p>
                 </div>
               </a>
               <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="tel:9974440132"
                 className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl hover:border-accent hover:bg-card/50 transition-all group"
               >
-                <Github size={28} className="text-accent group-hover:scale-110 transition-transform" />
+                <Phone size={28} className="text-accent group-hover:scale-110 transition-transform" />
                 <div>
-                  <p className="text-sm text-muted-foreground">GitHub</p>
-                  <p className="font-semibold group-hover:text-accent transition-colors">Check my code</p>
+                  <p className="text-sm text-muted-foreground">Phone</p>
+                  <p className="font-semibold group-hover:text-accent transition-colors">9974440132</p>
                 </div>
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/dev-gajjar"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl hover:border-accent hover:bg-card/50 transition-all group"
