@@ -23,35 +23,7 @@ const skills = [
 ]
 
 const projects = [
-  {
-    name: "FlikForge",
-    description: "AI platform for training custom LLMs with intuitive interfaces and powerful ML capabilities",
-    detailedDescription:
-      "FlikForge enables users to train custom LLMs and generate AI-powered content such as images and videos. Users can monetize their creations by selling AI-generated content or sharing trained LLMs with others.",
-    tech: ["NestJS", "Python", "Next.js"],
-    link: "https://flikforge.com/",
-    responsibilities: [
-      "Led backend architecture and API development using NestJS",
-      "Integrated third-party AI services for model training and inference",
-      "Collaborated with Python team on LLM training workflows",
-      "Led a team of four developers with daily client calls",
-    ],
-  },
-  {
-    name: "Acadenutri",
-    description: "Health and fitness platform connecting users with certified nutritionists and gym trainers",
-    detailedDescription:
-      "Acadenutri is a comprehensive health platform with mobile and web apps supporting four user types: Admin, General Users, Nutritionists, and Gym Trainers. Trainers and Nutritionists subscribe and earn commission on user payments.",
-    tech: ["Node.js", "Flutter", "Python"],
-    link: "https://acadenutri.com.br/home",
-    responsibilities: [
-      "Developed backend services using Node.js",
-      "Managed communication with client for task requirements",
-      "Coordinated development efforts across in-house and freelance teams",
-      "Distributed tasks and maintained project timelines",
-    ],
-  },
-  {
+    {
     name: "Elite Pickleball Coaching",
     description: "Comprehensive athlete training platform with real-time coach-athlete interactions",
     detailedDescription:
@@ -71,71 +43,152 @@ const projects = [
     ],
   },
   {
+    name: "FlikForge",
+    description: "AI platform for training custom LLMs with intuitive interfaces and powerful ML capabilities",
+    detailedDescription:
+      "FlikForge enables users to train custom LLMs and generate AI-powered content such as images and videos. Users can monetize their creations by selling AI-generated content or sharing trained LLMs with others.",
+    tech: ["NestJS", "Python", "Next.js"],
+    link: "https://flikforge.com/",
+    responsibilities: [
+      "Led backend architecture and API development using NestJS",
+      "Integrated third-party AI services for model training and inference",
+      "Collaborated with Python team on LLM training workflows",
+      "Led a team of four developers with daily client calls",
+    ],
+  },
+  {
+    name: "Acadenutri",
+    description: "Health and fitness platform connecting users with certified nutritionists and gym trainers",
+    detailedDescription:
+      "Acadenutri is a comprehensive health platform with mobile and web apps supporting four user types: Admin, General Users, Nutritionists, and Gym Trainers. Trainers and Nutritionists subscribe and earn commission on user payments.",
+    tech: ["Node.js", "Flutter", "React.js"],
+    link: "https://acadenutri.com.br/home",
+    responsibilities: [
+      "Developed backend services using Node.js",
+      "Managed communication with client for task requirements",
+      "Coordinated development efforts across in-house and freelance teams",
+      "Distributed tasks and maintained project timelines",
+    ],
+  },
+  {
     name: "Unify",
     description: "Cab booking platform enabling ride reservations across London",
     detailedDescription:
       "Full-stack cab booking system with separate mobile applications for users and drivers, plus comprehensive admin panel for management and verification. Built with modern tech stack for scalability.",
     tech: ["Node.js", "Next.js", "MySQL"],
-    link: "#",
+    link: "https://admin-dev.unifylondon.com/admin/login",
     responsibilities: [
       "Full stack development from frontend to backend",
-      "Client communication for complex requirements",
       "Ensured successful, client-focused outcomes",
       "Implemented user and driver applications with admin management",
     ],
   },
-  {
-    name: "AI Chat Platform",
-    description: "Real-time messaging with AI-powered suggestions and intelligent insights",
-    tech: ["Next.js", "WebSocket", "OpenAI"],
-    link: "#",
-  },
-  {
-    name: "FinTech Dashboard",
-    description: "Advanced analytics dashboard for cryptocurrency trading and portfolio management",
-    tech: ["React", "TradingView", "Node.js"],
-    link: "#",
-  },
-  {
-    name: "Task Management Pro",
-    description: "Collaborative task management with real-time updates and team coordination",
-    tech: ["Next.js", "PostgreSQL", "Prisma"],
-    link: "#",
-  },
-  {
-    name: "E-Commerce Platform",
-    description: "Full-featured e-commerce solution with payment processing and inventory management",
-    tech: ["Next.js", "Stripe", "MongoDB"],
-    link: "#",
-  },
-  {
-    name: "Social Network",
-    description: "Community-driven social platform with feed, messaging, and content discovery",
-    tech: ["React Native", "Firebase", "GraphQL"],
-    link: "#",
-  },
+{
+  name: "HOCO",
+  description:
+    "Room and roommate-matching platform with smooth navigation, in-app chat, and detailed property listings.",
+  detailedDescription:
+    "A mobile and web platform designed to simplify room and roommate discovery. Users can browse detailed room listings, match with compatible roommates based on preferences, and communicate instantly through an in-app chat system. The platform includes safety features like report/block, real-time notifications, and a seamless experience across Flutter mobile apps, a React web app, and a Node.js backend.",
+  tech: ["Node.js", "React.js", "Flutter", "MongoDB"],
+  link: "https://www.inheritx.com/portfolio/home-coming-app",
+  responsibilities: [
+    "Developed core backend APIs in Node.js for room listings, roommate matching, chat, and authentication",
+    "Implemented frontend modules in React.js for search, filters, and user dashboard functionalities",
+    "Collaborated closely with the Flutter team to ensure smooth integration between mobile features and backend services",
+    "Designed scalable data structures to support matching logic, notifications, and user safety features",
+  ],
+},
+{
+  name: "Underwriter",
+  description:
+    "AI-powered stock research and insights platform available on iOS and Android.",
+  detailedDescription:
+    "A smart stock research application offering AI-driven insights, company comparisons, curated news, and an intelligent chatbot trained to simplify financial data. Built with a cross-functional team across Node.js, Flutter, and Python to deliver seamless user experience and real-time analytics.",
+  tech: ["Node.js", "Flutter", "Python", "MongoDB"],
+  link: "https://www.iamunderwriter.com/download-the-app",
+  responsibilities: [
+    "Developed and maintained core backend services using Node.js",
+    "Coordinated with Flutter and Python teams to integrate app features and train the AI chatbot",
+    "Implemented APIs for stock data, insights, and user interactions",
+    "Collaborated with client directly for requirements, clarifications, and delivery",
+  ],
+},
+ {
+  name: "Moneda",
+  description:
+    "Banking and financial services platform built using a Go monorepo architecture.",
+  detailedDescription:
+    "A modular Go monorepo powering multiple financial services using Bazel for builds, scalable service structure, and strict engineering standards. Worked closely with the third-party Ozone banking team to integrate secure financial workflows and deeply understand banking rules, compliance flows, and their API ecosystem.",
+  tech: ["Go", "gin", "PostgreSQL", "REST APIs", "Ozone API"],
+  link: "https://www.moneda.com/",
+  responsibilities: [
+    "Developed backend services in Go within a monorepo using gin and Gazelle tooling",
+    "Collaborated closely with Ozone (third-party banking partner) for API integration and workflow alignment",
+    "Gained deep understanding of banking processes, financial flows, and API compliance requirements",
+    "Implemented, optimized, and maintained core banking microservices",
+    "Ensured smooth communication between internal teams and external financial partners",
+  ],
+},
+
+{
+  name: "Our Little Play Home",
+  description:
+    "A multi-language PWA offering engaging learning experiences for children and parents.",
+  detailedDescription:
+    "An interactive EdTech platform featuring creative learning activities, printable resources, toy donation systems, and child-profile management. Includes a powerful admin panel for managing content, subscriptions, users, and community contributions. Designed as a family-friendly PWA with smooth performance and modern UI/UX.",
+  tech: ["Next.js", "Node.js", "MongoDB", "Tailwind CSS", "TypeScript", "PWA"],
+  link: "https://www.inheritx.com/portfolio/our-little-play-home",
+  responsibilities: [
+    "Served as one of the key contributors and POC for this project",
+    "Built and maintained core Node.js APIs for authentication, subscriptions, child profiles, and learning modules",
+    "Collaborated with frontend team to integrate multi-language support and PWA capabilities",
+    "Implemented admin features for content management, user tracking, and resource updates",
+    "Worked on one of the earliest projects in the team, ensuring smooth delivery and reliable architecture",
+  ],
+},
+{
+  name: "Travel & Culture Experience Platform",
+  description:
+    "A travel and cultural marketplace combining trip planning, community engagement, and artisan shopping.",
+  detailedDescription:
+    "A complete TravelTech platform that allows users to estimate customized travel packages, explore cultural blogs, join community discussions, and shop handcrafted products from local artisans. The system blends trip planning with authentic cultural experiences, featuring real-time pricing, role-based access, order tracking, and secure payments. Built as a PWA for seamless performance across devices.",
+  tech: ["Next.js", "Node.js", "Tailwind CSS", "PWA"],
+  link: "https://www.tourwit.in/home",
+  responsibilities: [
+    "Developed backend and frontend modules using Next.js and Node.js",
+    "Implemented real-time trip estimation, cart purchase, and order tracking features",
+    "Integrated secure payment systems and role-based access control",
+    "Built user authentication, address management, and cultural content modules",
+    "Enhanced performance and UX across shopping, travel planning, and community features",
+  ],
+}
+
 ]
 
 const experience = [
   {
-    company: "InteliVitas",
-    role: "Software Engineer",
+    company: "Intelivita",
+    role: "Full-Stack Software Engineer",
     period: "Sep 2025 – Present",
-    description: "Building scalable solutions",
+    description:
+      "Building scalable end-to-end solutions across frontend and backend using Node.js, Next.js, and React.",
   },
   {
     company: "InheritX",
-    role: "Software Engineer (Backend Lead)",
+    role: "Software Engineer (Backend)",
     period: "Mar 2023 – Aug 2025",
-    description: "Led backend architecture and team",
+    description:
+      "Led backend components of multiple projects, handled architecture decisions, and collaborated with cross-functional teams.",
   },
   {
     company: "Double Dotts",
-    role: "Software Engineer",
+    role: "Backend Developer",
     period: "Oct 2022 – Mar 2023",
-    description: "Full-stack development",
+    description:
+      "Developed REST APIs, integrated third-party services, and contributed to backend system improvements.",
   },
-]
+];
+
 
 export default function Portfolio() {
   const [scrollY, setScrollY] = useState(0)

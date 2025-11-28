@@ -10,7 +10,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Dev Gajjar - Full Stack Software Engineer",
   description:
-    "Full Stack Software Engineer specializing in Node.js, Next.js, React.js, and Go. Experienced in building scalable applications and leading teams.",
+    "Full Stack Software Engineer specializing in Node.js, Nest.js, Next.js, React.js, and Go. Experienced in building scalable applications and leading teams.",
   generator: "v0.app",
   icons: {
     icon: [
