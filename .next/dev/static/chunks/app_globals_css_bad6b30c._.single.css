@@ -1236,6 +1236,14 @@
     cursor: default;
   }
 
+  .cursor-grab {
+    cursor: grab;
+  }
+
+  .cursor-grabbing {
+    cursor: grabbing;
+  }
+
   .cursor-pointer {
     cursor: pointer;
   }
@@ -2828,6 +2836,18 @@
     @supports (color: color-mix(in lab, red, red)) {
       .hover\:bg-accent\/20:hover {
         background-color: color-mix(in oklab, var(--accent) 20%, transparent);
+      }
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:bg-accent\/90:hover {
+      background-color: var(--accent);
+    }
+
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-accent\/90:hover {
+        background-color: color-mix(in oklab, var(--accent) 90%, transparent);
       }
     }
   }

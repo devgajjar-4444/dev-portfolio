@@ -200,6 +200,11 @@ export default function Portfolio() {
   const experienceSectionRef = useRef<HTMLDivElement>(null)
   const projectsSectionRef = useRef<HTMLDivElement>(null)
   const autoScrollTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const [isDragging, setIsDragging] = useState(false)
+  const [startX, setStartX] = useState(0)
+  const [scrollLeft, setScrollLeft] = useState(0)
+  const [dragOffset, setDragOffset] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -274,12 +279,102 @@ export default function Portfolio() {
       }, 5000) // Auto-scroll every 5 seconds
     }
 
-    startAutoScroll()
+    if (!isDragging) {
+      startAutoScroll()
+    }
 
     return () => {
       if (autoScrollTimerRef.current) clearInterval(autoScrollTimerRef.current)
     }
-  }, [])
+  }, [isDragging])
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true)
+    setStartX(e.pageX - (carouselRef.current?.offsetLeft || 0))
+    setScrollLeft(currentProjectIndex)
+    setDragOffset(0)
+    if (autoScrollTimerRef.current) clearInterval(autoScrollTimerRef.current)
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return
+    e.preventDefault()
+    const x = e.pageX - (carouselRef.current?.offsetLeft || 0)
+    const walk = (x - startX) * 0.5 // Adjust sensitivity
+    setDragOffset(walk)
+  }
+
+  const handleMouseUp = () => {
+    if (!isDragging) return
+    
+    const carouselWidth = carouselRef.current?.offsetWidth || 0
+    const slideWidth = carouselWidth * 0.8 // Each slide is 80% width
+    const dragThreshold = slideWidth * 0.2 // 20% drag to change slide
+    
+    if (Math.abs(dragOffset) > dragThreshold) {
+      if (dragOffset > 0) {
+        // Dragged right, go to previous slide
+        setCurrentProjectIndex((prev) => (prev - 1 + totalProjects) % totalProjects)
+      } else {
+        // Dragged left, go to next slide
+        setCurrentProjectIndex((prev) => (prev + 1) % totalProjects)
+      }
+    }
+    
+    setIsDragging(false)
+    setDragOffset(0)
+  }
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      handleMouseUp()
+    }
+  }
+
+  // Pause auto-scroll on click/hold
+  const handleCardMouseDown = () => {
+    if (autoScrollTimerRef.current) clearInterval(autoScrollTimerRef.current)
+  }
+
+  const handleCardMouseUp = () => {
+    // Resume auto-scroll after a delay
+    setTimeout(() => {
+      if (!isDragging) {
+        autoScrollTimerRef.current = setInterval(() => {
+          setCurrentProjectIndex((prev) => {
+            const newIndex = (prev + 1) % totalProjects
+            if (newIndex === 0) {
+              setIsTransitioning(true)
+              setTimeout(() => setIsTransitioning(false), 50)
+            }
+            return newIndex
+          })
+        }, 5000)
+      }
+    }, 2000) // Resume after 2 seconds
+  }
+
+  // Touch support for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0]
+    setIsDragging(true)
+    setStartX(touch.pageX - (carouselRef.current?.offsetLeft || 0))
+    setScrollLeft(currentProjectIndex)
+    setDragOffset(0)
+    if (autoScrollTimerRef.current) clearInterval(autoScrollTimerRef.current)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return
+    const touch = e.touches[0]
+    const x = touch.pageX - (carouselRef.current?.offsetLeft || 0)
+    const walk = (x - startX) * 0.5
+    setDragOffset(walk)
+  }
+
+  const handleTouchEnd = () => {
+    handleMouseUp()
+  }
 
   const totalProjects = projects.length
   const currentProject = projects[currentProjectIndex]
@@ -407,10 +502,18 @@ export default function Portfolio() {
             <div className="relative w-full overflow-hidden">
               <div className="w-full overflow-hidden rounded-xl">
                 <div
-                  className={`flex ${isTransitioning ? 'transition-none' : 'transition-transform duration-700 ease-out'}`}
+                  ref={carouselRef}
+                  className={`flex ${isTransitioning || isDragging ? 'transition-none' : 'transition-transform duration-700 ease-out'} ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
                   style={{
-                    transform: `translateX(calc(-${currentProjectIndex * 80}%))`,
+                    transform: `translateX(calc(-${currentProjectIndex * 80}% + ${dragOffset}px))`,
                   }}
+                  onMouseDown={handleMouseDown}
+                  onMouseMove={handleMouseMove}
+                  onMouseUp={handleMouseUp}
+                  onMouseLeave={handleMouseLeave}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
                 >
                   {displayProjects.map((project, idx) => {
                     const transformValue = `translateY(${projectParallax * 0.5}px)`
@@ -424,58 +527,32 @@ export default function Portfolio() {
                       }}
                     >
                       <div
-                        onClick={() => {
-                          if (project.link && project.link !== "#") {
-                            window.open(project.link, "_blank")
-                          }
-                        }}
                         className={`group bg-card rounded-xl p-8 ${
                           idx % totalProjects === currentProjectIndex
                             ? "border-2 border-accent shadow-xl shadow-accent/20 relative overflow-hidden"
-                            : project.link && project.link !== "#"
-                              ? "border-2 border-border hover:border-accent hover:shadow-lg hover:shadow-accent/10 cursor-pointer shadow-md shadow-black/5 relative overflow-hidden"
-                              : "border-2 border-border shadow-md shadow-black/5"
+                            : "border-2 border-border shadow-md shadow-black/5"
                         } border-b-4 transition-all duration-300 flex flex-col relative`}
                         style={{
                           background: idx % totalProjects === currentProjectIndex 
                             ? 'linear-gradient(to top, rgb(var(--accent) / 0.1), transparent), rgb(var(--card))'
-                            : project.link && project.link !== "#"
-                              ? 'linear-gradient(to top, rgb(var(--accent) / 0.05), transparent), rgb(var(--card))'
-                              : 'rgb(var(--card))',
+                            : 'rgb(var(--card))',
                           borderImage: idx % totalProjects === currentProjectIndex
                             ? 'linear-gradient(to top, rgb(var(--accent)), transparent) 1'
-                            : project.link && project.link !== "#"
-                              ? 'linear-gradient(to top, rgb(var(--accent) / 0.5), transparent) 1'
-                              : 'none',
+                            : 'none',
                           transform: transformValue,
                           height: "auto",
                           minHeight: "600px",
                         }}
-                        onMouseEnter={(e) => {
-                          if (project.link && project.link !== "#" && idx % totalProjects !== currentProjectIndex) {
-                            e.currentTarget.style.borderImage = 'linear-gradient(to top, rgb(var(--accent)), transparent) 1'
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (project.link && project.link !== "#" && idx % totalProjects !== currentProjectIndex) {
-                            e.currentTarget.style.borderImage = 'none'
-                          }
-                        }}
-                        role={project.link && project.link !== "#" ? "button" : undefined}
-                        tabIndex={project.link && project.link !== "#" ? 0 : undefined}
-                        onKeyDown={(e) => {
-                          if ((e.key === "Enter" || e.key === " ") && project.link && project.link !== "#") {
-                            window.open(project.link, "_blank")
-                          }
-                        }}
+                        onMouseDown={handleCardMouseDown}
+                        onMouseUp={handleCardMouseUp}
                       >
                         <div className="relative z-10">
-                          <h3 className="text-2xl font-semibold mb-2 group-hover:text-accent transition-colors flex items-center gap-2 line-clamp-2">
+                          <h3 className="text-2xl font-semibold mb-2 text-foreground flex items-center gap-2 line-clamp-2">
                             {project.name}
                             {project.link && project.link !== "#" && (
                               <ExternalLink
                                 size={20}
-                                className="opacity-70 group-hover:opacity-100 transition-opacity flex-shrink-0"
+                                className="opacity-70 flex-shrink-0"
                               />
                             )}
                           </h3>
@@ -513,9 +590,23 @@ export default function Portfolio() {
                           </div>
                         </div>
 
+                        {project.link && project.link !== "#" && (
+                          <div className="pt-3 mb-4">
+                            <a
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-4 py-2 bg-accent hover:bg-accent/90 text-accent-foreground font-medium rounded-lg transition-colors"
+                            >
+                              <ExternalLink size={16} />
+                              Visit Project
+                            </a>
+                          </div>
+                        )}
+
                         {project.links && (
                           <div className="pt-3">
-                            <p className="text-xs font-semibold text-muted-foreground mb-2">Visit Platform</p>
+                            <p className="text-xs font-semibold text-muted-foreground mb-2">Platform Access</p>
                             <div className="flex flex-wrap gap-2">
                               {Object.entries(project.links).map(([key, url]) => (
                                 <a
