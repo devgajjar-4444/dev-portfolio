@@ -221,7 +221,7 @@ export default function Portfolio() {
       } else if (skillsSection && window.scrollY >= skillsSection.offsetTop - 100) {
         setActiveSection("skills")
       } else {
-        setActiveSection("")
+        setActiveSection("home")
       }
     }
 
@@ -392,20 +392,12 @@ export default function Portfolio() {
           </a>
           <div className="flex gap-8">
             <a
-              href="#"
+              href="#home"
               className={`text-sm font-medium transition-colors ${
-                activeSection === "" ? "text-accent font-semibold" : "text-muted-foreground hover:text-foreground"
+                activeSection === "home" ? "text-accent font-semibold" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               Home
-            </a>
-            <a
-              href="#work"
-              className={`text-sm font-medium transition-colors ${
-                activeSection === "work" ? "text-accent font-semibold" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Work
             </a>
             <a
               href="#skills"
@@ -414,6 +406,14 @@ export default function Portfolio() {
               }`}
             >
               Skills
+            </a>
+            <a
+              href="#work"
+              className={`text-sm font-medium transition-colors ${
+                activeSection === "work" ? "text-accent font-semibold" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Work
             </a>
             <a
               href="#contact"
@@ -667,7 +667,9 @@ export default function Portfolio() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <a
-                href="mailto:devgajjar0132@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&to=devgajjar0132@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl hover:border-accent hover:bg-card/50 transition-all group"
               >
                 <Mail size={28} className="text-accent group-hover:scale-110 transition-transform" />
