@@ -434,11 +434,10 @@ export default function Portfolio() {
           <section id="home" className="mb-28">
             <h1 className="text-6xl md:text-7xl font-bold mb-6 text-balance leading-tight">Full Stack Engineer</h1>
             <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed mb-8">
-              I build fast, scalable applications with Node.js, React, and Go. Over 3 years helping fintech, AI, and
-              healthcare companies solve complex problems.
+        I build high-performance, scalable digital products using Node.js, NestJS, Next.js, React, and Go with over 3+ years of experience delivering modern solutions across multiple industries.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a
+              <a 
                 href="#contact"
                 className="inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity"
               >
